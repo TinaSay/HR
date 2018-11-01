@@ -1,0 +1,13 @@
+image: runner:compose
+stages:
+    - deploy
+before_script:
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+dev:
+    stage: deploy
+    environment: dev
+    script:
+        - sshpass -p $SSH_PASSWORD rsync -riz --links --delete -e "ssh" ./html/ $SSH_USERNAME@$SSH_HOST:$SSH_DIRECTORY
+    only:
+        - master

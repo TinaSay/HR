@@ -1,0 +1,75 @@
+{
+    "name": "krok/cmf2",
+    "description": "The CMF2 is based on Yii2",
+    "keywords": [
+        "yii2",
+        "framework",
+        "basic",
+        "project template"
+    ],
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "krok",
+            "email": "yii2.developer@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "composer",
+            "url": "http://packagist.dev-vps.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "yiisoft/yii2": "~2.0.12",
+        "yiisoft/yii2-redis": "~2.0.0",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "yiisoft/yii2-imagine": "~2.0.0",
+        "yiisoft/yii2-jui": "~2.0.0",
+        "yiisoft/yii2-authclient": "~2.0.0",
+        "yiisoft/yii2-queue": "~2.0.0",
+        "yii2-developer/yii2-extend": "~0.0.1",
+        "yii2-developer/yii2-system": "~0.0.1",
+        "yii2-developer/yii2-paperDashboard": "~0.0.1",
+        "yii2-developer/yii2-example": "~1.0.0",
+        "yii2-developer/yii2-content": "~0.0.1",
+        "yii2-developer/yii2-storage": "~0.0.1",
+        "yii2-developer/yii2-slim": "~0.0.1",
+        "yii2-developer/yii2-glide": "~1.0.0",
+        "yii2-developer/yii2-imperavi": "~1.0.0",
+        "yii2-developer/yii2-language": "~1.0.0",
+        "yii2-developer/yii2-oauth": "~1.0.0",
+        "yii2-developer/yii2-log": "~1.0.0",
+        "yii2-developer/yii2-sentry": "~0.0.1",
+        "yii2-developer/yii2-access": "~0.0.1",
+        "yii2-developer/yii2-password-eye": "~0.0.1",
+        "yii2-developer/yii2-backupManager": "~0.0.1",
+        "bootstrap-select/bootstrap-select": "~1.12.0",
+        "vlucas/phpdotenv": "~2.4.0",
+        "yii2-developer/yii2-cabinet": "~0.0.7",
+        "sjaakp/yii2-sortable-behavior": "^1.0",
+        "2amigos/yii2-file-upload-widget": "~1.0",
+        "yiisoft/yii2-httpclient": "^2.0",
+        "contrib/yii2-html": "~0.0.1"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.0.0",
+        "yiisoft/yii2-gii": "~2.0.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "process-timeout": 1800,
+        "secure-http": false
+    },
+    "scripts": {
+        "post-autoload-dump": "curl --silent --header \"Accept: text/plain\" https://security.sensiolabs.org/check_lock --form lock=@composer.lock"
+    }
+}

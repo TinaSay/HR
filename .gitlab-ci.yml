@@ -1,0 +1,65 @@
+image: runner:compose
+stages:
+    - tests
+    - deploy
+before_script:
+    # Software
+    - docker version
+    - docker-compose version
+    # Configure ssh
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    # Configure docker-compose
+    - cp .env.gitlab .env
+    # Up
+    - docker-compose build
+    - docker-compose up -d
+    - docker-compose ps
+migrate:
+    stage: tests
+    environment: tests
+    script:
+        # Composer install
+        - ./docker.sh exec composer --working-dir=framework install
+
+        - ./docker.sh exec framework/yii migrate/up
+        - ./docker.sh exec framework/yii access/install
+    tags:
+        - compose
+dev:
+    stage: deploy
+    environment: dev
+    script:
+        # Composer install
+        - ./docker.sh exec composer --working-dir=framework install
+
+        - sshpass -p $SSH_PASSWORD rsync -riz --links --delete -e "ssh" --exclude-from="exclude.txt" . $SSH_USERNAME@$SSH_HOST:$SSH_DIRECTORY
+        - sshpass -p $SSH_PASSWORD ssh $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh mysql-backup"
+        - sshpass -p $SSH_PASSWORD ssh $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh cron /root/cron/tabs"
+        - sshpass -p $SSH_PASSWORD ssh $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh exec framework/yii migrate/up"
+        - sshpass -p $SSH_PASSWORD ssh $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh exec framework/yii access/install"
+        - sshpass -p $SSH_PASSWORD ssh $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh exec framework/yii cache/flush-all"
+    only:
+        - master
+    tags:
+        - compose
+production:
+    stage: deploy
+    environment: production
+    script:
+        # Composer install
+        - ./docker.sh exec composer --working-dir=framework install --no-dev
+
+        - sshpass -p $SSH_PASSWORD_PROD rsync -riz --links --delete -e "ssh -p 2227" --exclude-from="exclude.txt" . $SSH_USERNAME_PROD@$SSH_HOST_PROD:$SSH_DIRECTORY_PROD
+        - sshpass -p $SSH_PASSWORD_PROD ssh -p 2227 $SSH_USERNAME_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_PROD && /usr/local/php71/bin/php html/framework/yii migrate/up"
+        - sshpass -p $SSH_PASSWORD_PROD ssh -p 2227 $SSH_USERNAME_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_PROD && /usr/local/php71/bin/php html/framework/yii access/install"
+        - sshpass -p $SSH_PASSWORD_PROD ssh -p 2227 $SSH_USERNAME_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_PROD && /usr/local/php71/bin/php html/framework/yii cache/flush-all"
+    only:
+        - production
+    tags:
+        - compose
+after_script:
+    # Down
+    - docker-compose down
+    # Cleanse
+    - find . -delete

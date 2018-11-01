@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+/* fix style */
+.base-form .faild-wrap + .forgot-pass,
+.base-form .faild-wrap + .helper {
+  display: block;
+  margin-top: -20px !important;
+  margin-bottom: 30px;
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48">
+	<defs>
+		<style>.cls-1{fill:#e1e1e1;}.cls-2{clip-path:url(#clip-path);}</style>
+		<clipPath id="clip-path">
+			<rect class="cls-1" fill="#e1e1e1" stroke="#e1e1e1" width="48" height="48"/>
+		</clipPath>
+	</defs>
+	<g id="Слой_2" data-name="Слой 2">
+		<g id="Слой_1-2" data-name="Слой 1">
+			<path fill="#e1e1e1" stroke="#e1e1e1" d="M28.8,17.6H8.8a.8.8,0,1,0,0,1.6h20a.8.8,0,1,0,0-1.6Zm0,0"/>
+			<path fill="#e1e1e1" stroke="#e1e1e1" d="M8.8,12.8h8a.8.8,0,0,0,0-1.6h-8a.8.8,0,0,0,0,1.6Zm0,0"/>
+			<path fill="#e1e1e1" stroke="#e1e1e1" d="M29.6,24.8a.8.8,0,0,0-.8-.8H8.8a.8.8,0,0,0,0,1.6h20a.8.8,0,0,0,.8-.8Zm0,0"/>
+			<path fill="#e1e1e1" stroke="#e1e1e1" d="M23.2,31.2a.8.8,0,0,0-.8-.8H8.8a.8.8,0,0,0,0,1.6H22.4a.8.8,0,0,0,.8-.8Zm0,0"/>
+			<path fill="#e1e1e1" stroke="#e1e1e1" d="M8.8,36.8a.8.8,0,1,0,0,1.6H20a.8.8,0,1,0,0-1.6Zm0,0"/>
+			<g class="cls-2">
+				<path fill="#e1e1e1" stroke="#e1e1e1" d="M1.6,1.6H24.8V12.8H36V26.4h1.6V11.67L25.93,0H0V48H24V46.4H1.6ZM26.4,2.73l8.47,8.47H26.4Zm0,0"/>
+				<path fill="#e1e1e1" stroke="#e1e1e1" d="M47.75,45.31,38.28,29.06a1.79,1.79,0,0,0-3.09,0L25.71,45.31A1.79,1.79,0,0,0,27.25,48h19a1.79,1.79,0,0,0,1.55-2.69Zm-1.38,1a.17.17,0,0,1-.16.09H27.26a.19.19,0,0,1-.16-.29l9.47-16.25a.19.19,0,0,1,.16-.09.19.19,0,0,1,.17.09l9.47,16.25a.18.18,0,0,1,0,.19Zm0,0"/>
+			</g>
+			<path fill="#e1e1e1" stroke="#e1e1e1" d="M36.8,33.6a.8.8,0,0,0-.8.8v6.4a.8.8,0,0,0,1.6,0V34.4a.8.8,0,0,0-.8-.8Zm0,0"/>
+			<path fill="#e1e1e1;" stroke="#e1e1e1" d="M36.23,43.43a.8.8,0,0,0,.57,1.37.82.82,0,0,0,.57-.23.8.8,0,1,0-1.14-1.13Zm0,0"/>
+		</g>
+	</g>
+</svg>
